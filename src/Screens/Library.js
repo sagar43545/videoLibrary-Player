@@ -212,63 +212,86 @@ const TestingScreen = props => {
           <View style={styles.contentContainer}>
             <View style={styles.youtubePlayer}>
               <Text style={styles.videoTitle}>
-                Chad Johnson Food Forest Walkthrough with Jim Gale of FFA
+                The Free and Equal Elections Foundation is proud to announce: Legendary Civil Rights leader Amelia Boynton Robinson of Selma, has confirmed as the keynote sp...
               </Text>
               <YoutubePlayer
                 height={220}
                 play={playing}
-                videoId={'pshyJI0u7eE'}
+                videoId={'Bf1J6xb0oRk'}
                 onChangeState={onStateChange}
                 webViewStyle={styles.youtubeOpacity}
               />
             </View>
             <View style={styles.youtubePlayer}>
               <Text style={styles.videoTitle}>
-                CREATING ABUNDANCE IN YOUR BACKYARD - Jim Gale on The Highwire
+                Free & Equal Election's United We Stand festival Cambria brought innovative and free thinking influencers together to develop a union to dismantle the two pa...
               </Text>
               <YoutubePlayer
                 height={220}
                 play={playing}
-                videoId={'DJEihCcRH0c'}
+                videoId={'VBO4LV-KuLg'}
                 onChangeState={onStateChange}
                 webViewStyle={styles.youtubeOpacity}
               />
             </View>
             <View style={styles.youtubePlayer}>
               <Text style={styles.videoTitle}>
-                Jim Gale - Food Forest Abundance | Food Forests Everywhere!
+                In 2014, Free & Equal launched United We Stand Festival, an annual nationwide tour uniting the younger generations with musicians, artists, and thought leade...
               </Text>
               <YoutubePlayer
                 height={220}
                 play={playing}
-                videoId={'eIb8p5eWZl8'}
+                videoId={'Py-Imrp1U5s'}
                 onChangeState={onStateChange}
                 webViewStyle={styles.youtubeOpacity}
               />
             </View>
             <View style={styles.youtubePlayer}>
               <Text style={styles.videoTitle}>
-                Jim Gale Galt's Landing - Food, water and energy self-reliance,
-                Lakefront, Luxury!
+                Free & Equal Elections Foundation is a 501(c)3 non-profit organization with a mission to open the U.S. electoral process through education and collaborative ...
               </Text>
               <YoutubePlayer
                 height={220}
                 play={playing}
-                videoId={'ST2Vac0P14c'}
+                videoId={'MOja0dN0zEk'}
                 onChangeState={onStateChange}
                 webViewStyle={styles.youtubeOpacity}
               />
             </View>
             <View style={styles.youtubePlayer}>
               <Text style={styles.videoTitle}>
-                "This FREEDOM Revolution Is Unstoppable" by INSPIRED
+                The Free and Equal Elections Foundation is proud to announce: Legendary Civil Rights leader Amelia Boynton Robinson of Selma, has confirmed as the keynote sp...
               </Text>
               <YoutubePlayer
                 height={220}
                 play={playing}
-                videoId={'z87sBzZ-hkc'}
+                videoId={'UY7uDbODJIA'}
                 onChangeState={onStateChange}
                 webViewStyle={styles.youtubeOpacity}
+              />
+            </View>
+            <View style={styles.youtubePlayer}>
+              <Text style={styles.videoTitle}>
+                Chloe from Rising Appalachia Supports UWS Fest & the Conscious Awakening in AmericaRising Appalachia brings to the stage a collection of sounds, stories, and...
+              </Text>
+              <YoutubePlayer
+                  height={220}
+                  play={playing}
+                  videoId={'l04GPUVCPMU'}
+                  onChangeState={onStateChange}
+                  webViewStyle={styles.youtubeOpacity}
+              />
+            </View>
+            <View style={styles.youtubePlayer}>
+              <Text style={styles.videoTitle}>
+                2021 UWS Cambria - Speaker Lyla from Skate CambriaLyla from Skate Cambria speaks at United We Stand on July 3rd, 2021.
+              </Text>
+              <YoutubePlayer
+                  height={220}
+                  play={playing}
+                  videoId={'ukaPTXjlI7k'}
+                  onChangeState={onStateChange}
+                  webViewStyle={styles.youtubeOpacity}
               />
             </View>
           </View>
@@ -294,9 +317,10 @@ const styles = StyleSheet.create({
     fontFamily: 'Outfit-SemiBold',
     fontSize: 15,
     color: '#212121',
+    marginBottom: 8,
   },
   contentContainer: {
-    marginBottom: 80,
+    marginBottom: 12,
   },
   heading: {
     fontFamily: 'Outfit-SemiBold',

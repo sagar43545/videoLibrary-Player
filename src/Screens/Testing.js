@@ -212,138 +212,156 @@ const TestingScreen = props => {
         </View>
         <ScrollView style={styles.container}>
           <View style={styles.contentContainer}>
-            <Text style={styles.heading}>
-              Be Strong and Free with Food Forest Abundance
-            </Text>
             <View style={{width: '92%', marginHorizontal: 15}}>
               <Image
-                source={require('../../assets/testing_image.png')}
+                // source={require('../../assets/testing_image.png')}
+                source={require('../../assets/mainTop.png')}
                 style={styles.profile}
                 resizeMode="center"
               />
             </View>
             <View style={styles.containerDescription}>
-              <Text style={styles.growingTitle}>Why grow food?</Text>
-              <Text style={styles.subTitleDescription}>RISING FOOD PRICES</Text>
               <Text style={styles.description}>
-                A food forest provides a sustainable and abundant source of
-                fresh produce, reducing the need to purchase expensive items
-                from supermarkets.
+                Free & Equal Elections Foundation is a 501(c)3 non-profit organization with a mission to open the electoral process through education, collaborative action, and representation for all candidates.
               </Text>
 
-              <Text style={styles.subTitleDescription}>GMO’S & PESTICIDES</Text>
-              <Text style={styles.description}>
-                Food forests can enhance biodiversity, protect soil and water,
-                promote beneficial insects, and provide healthy food without the
-                use of harmful GMOs and pesticides.{' '}
+              <Text style={[styles.description,{marginTop:10}]}>
+                Founded in 2008 by electoral reform and voters’ rights leader Christina Tobin, Free & Equal leads national, state, and local efforts to transform the electoral system in the United States.
               </Text>
 
-              <Text style={styles.subTitleDescription}>FOOD SECURITY</Text>
-              <Text style={styles.description}>
-                Food forests can increase food security by providing a reliable
-                source of fresh, nutrient-dense food that is accessible to
-                individuals and communities.{' '}
+              <Text style={[styles.description,{marginTop:10}]}>
+                Free & Equal hosts open gubernatorial, Presidential, and senatorial debates, including the 2008, 2012, 2016, and 2020 Presidential debates moderated by Pulitzer Prize-Winning Journalist Chris Hedges, Broadcast Legend Larry King, Thom Hartmann of Free Speech TV, Emmy Award-Winning Actor Ed Asner and Christina Tobin.
+              </Text>
+
+              <Text style={[styles.description,{marginTop:10}]}>
+                Since 2009, Free & Equal has hosted annual electoral reform symposiums uniting intellectuals and experts to share, debate, and offer reforms to the current U.S. electoral system.
+              </Text>
+
+              <Text style={[styles.description,{marginTop:10}]}>
+                In 2013, Free & Equal launched Free & Equal TV, an independent media network that interviews public figures, thought leaders, and musicians.
+              </Text>
+
+              <Text style={[styles.description,{marginTop:10}]}>
+                In 2014, Free & Equal launched the United We Stand event series, an annual nationwide tour uniting the younger generations with musicians, artists, and thought leaders to encourage local civic participation and inspire people to run for office.
+              </Text>
+
+              <Text style={[styles.description,{marginTop:10}]}>
+                Free & Equal, together with Nexus Earth, is creating a Blockchain Election Assistant App to bring transparency to the election process, inspire individuals to run for office, and empower voters with information about all their candidate choices. Voters will use this app to determine the top 6 candidates who will be invited to participate in the Presidential debate this fall.
+              </Text>
+
+              <Text style={[styles.description,{marginTop:10}]}>
+                Since 2008, we’ve been producing debates and organizing coalitions to open the conversation, and we are the only organization to produce nationally televised debates that are constructive, inclusive, accountable, and responsive to the people.
               </Text>
             </View>
-            <View style={styles.youtubePlayer}>
-              <YoutubePlayer
-                height={220}
-                play={playing}
-                videoId={'Z-DC8A6XwUc'}
-                onChangeState={onStateChange}
-                webViewStyle={styles.youtubeOpacity}
-              />
-            </View>
-            {informationContent1()}
-            {/*=========================== People Review Section ======================*/}
-            <View style={styles.contactUsSection}>
-              <Image
-                source={require('../../assets/wall_wripple.png')}
-                style={styles.wallWripple}
-              />
-              <Text style={styles.txtContactUsTitle}>
-                What people are saying.
-              </Text>
-              <View style={styles.sliderContainer}>
-                <TouchableOpacity
-                  onPress={() => {
-                    if (activeIndexCar1 !== 0) {
-                      setActiveIndexCar1(activeIndexCar1 - 1);
-                      carouselRef.current.snapToPrev();
-                    }
-                  }}
-                  style={styles.previousCarousel}>
-                  {activeIndexCar1 === 0 ? null : (
-                    <Icon name="navigate-before" color="#CCCCCC" size={45} />
-                  )}
-                </TouchableOpacity>
-                <View style={styles.mainCarousel}>
-                  <Carousel
-                    layout={'stack'}
-                    layoutCardOffset={'-2'}
-                    ref={carouselRef}
-                    data={listData}
-                    sliderWidth={300}
-                    itemWidth={300}
-                    renderItem={_renderFirstCarousel}
-                    onSnapToItem={index => setActiveIndexCar1(index)}
-                  />
-                </View>
-                <TouchableOpacity
-                  onPress={() => {
-                    if (activeIndexCar1 !== 6) {
-                      setActiveIndexCar1(activeIndexCar1 + 1);
-                      carouselRef.current.snapToNext();
-                    }
-                  }}
-                  style={styles.nextCarousel}>
-                  <Icon name="navigate-next" color="#CCCCCC" size={45} />
-                </TouchableOpacity>
-              </View>
-              <View style={styles.reviewContainer}>
-                <Text style={styles.outfitRegular}>
-                  <Text style={styles.bold}>Google </Text>
-                  rating score:
-                  <Text style={styles.bold}> 4.8 </Text>
-                  of 5,
-                </Text>
-                <Text style={styles.outfitRegularCenter}>
-                  based on
-                  <Text style={styles.bold}> 65 reviews</Text>
-                </Text>
-              </View>
-            </View>
+            {/*<View style={styles.youtubePlayer}>*/}
+            {/*  <YoutubePlayer*/}
+            {/*    height={220}*/}
+            {/*    play={playing}*/}
+            {/*    videoId={'Z-DC8A6XwUc'}*/}
+            {/*    onChangeState={onStateChange}*/}
+            {/*    webViewStyle={styles.youtubeOpacity}*/}
+            {/*  />*/}
+            {/*</View>*/}
+            {/*{informationContent1()}*/}
+            {/*/!*=========================== People Review Section ======================*!/*/}
+            {/*<View style={styles.contactUsSection}>*/}
+            {/*  <Image*/}
+            {/*    source={require('../../assets/wall_wripple.png')}*/}
+            {/*    style={styles.wallWripple}*/}
+            {/*  />*/}
+            {/*  <Text style={styles.txtContactUsTitle}>*/}
+            {/*    What people are saying.*/}
+            {/*  </Text>*/}
+            {/*  <View style={styles.sliderContainer}>*/}
+            {/*    <TouchableOpacity*/}
+            {/*      onPress={() => {*/}
+            {/*        if (activeIndexCar1 !== 0) {*/}
+            {/*          setActiveIndexCar1(activeIndexCar1 - 1);*/}
+            {/*          carouselRef.current.snapToPrev();*/}
+            {/*        }*/}
+            {/*      }}*/}
+            {/*      style={styles.previousCarousel}>*/}
+            {/*      {activeIndexCar1 === 0 ? null : (*/}
+            {/*        <Icon name="navigate-before" color="#CCCCCC" size={45} />*/}
+            {/*      )}*/}
+            {/*    </TouchableOpacity>*/}
+            {/*    <View style={styles.mainCarousel}>*/}
+            {/*      <Carousel*/}
+            {/*        layout={'stack'}*/}
+            {/*        layoutCardOffset={'-2'}*/}
+            {/*        ref={carouselRef}*/}
+            {/*        data={listData}*/}
+            {/*        sliderWidth={300}*/}
+            {/*        itemWidth={300}*/}
+            {/*        renderItem={_renderFirstCarousel}*/}
+            {/*        onSnapToItem={index => setActiveIndexCar1(index)}*/}
+            {/*      />*/}
+            {/*    </View>*/}
+            {/*    <TouchableOpacity*/}
+            {/*      onPress={() => {*/}
+            {/*        if (activeIndexCar1 !== 6) {*/}
+            {/*          setActiveIndexCar1(activeIndexCar1 + 1);*/}
+            {/*          carouselRef.current.snapToNext();*/}
+            {/*        }*/}
+            {/*      }}*/}
+            {/*      style={styles.nextCarousel}>*/}
+            {/*      <Icon name="navigate-next" color="#CCCCCC" size={45} />*/}
+            {/*    </TouchableOpacity>*/}
+            {/*  </View>*/}
+            {/*  <View style={styles.reviewContainer}>*/}
+            {/*    <Text style={styles.outfitRegular}>*/}
+            {/*      <Text style={styles.bold}>Google </Text>*/}
+            {/*      rating score:*/}
+            {/*      <Text style={styles.bold}> 4.8 </Text>*/}
+            {/*      of 5,*/}
+            {/*    </Text>*/}
+            {/*    <Text style={styles.outfitRegularCenter}>*/}
+            {/*      based on*/}
+            {/*      <Text style={styles.bold}> 65 reviews</Text>*/}
+            {/*    </Text>*/}
+            {/*  </View>*/}
+            {/*</View>*/}
             {/*=========================== Some of Our Work Section======================*/}
-            <View style={styles.workContainer}>
-              <Text style={styles.growingTitle}>Some of our work.</Text>
-              <Text style={styles.growingContent2}>
-                Food forests come in all shapes and sizes. Whether it’s a
-                large-scale, public space or suburban backyard, our designs are
-                customized and ready to install.{' '}
-              </Text>
-              <View style={styles.mainWorkCarousel}>
-                <Carousel
-                  layout={'stack'}
-                  layoutCardOffset={'-2'}
-                  ref={carouselWorkRef}
-                  data={listWorkData}
-                  sliderWidth={300}
-                  itemWidth={300}
-                  renderItem={_renderSecondCarousel}
-                  onSnapToItem={index => setActiveIndexCar2(index)}
-                  startAutoPlay={true}
-                  loop
-                />
-                <Pagination
-                  dotsLength={listWorkData.length}
-                  activeDotIndex={activeIndexCar2}
-                  containerStyle={styles.paginationContainer}
-                  dotStyle={styles.dotStyle}
-                  inactiveDotOpacity={0.4}
-                  inactiveDotScale={0.6}
-                />
-              </View>
+            {/*<View style={styles.workContainer}>*/}
+            {/*  <Text style={styles.growingTitle}>Some of our work.</Text>*/}
+            {/*  <Text style={styles.growingContent2}>*/}
+            {/*    Food forests come in all shapes and sizes. Whether it’s a*/}
+            {/*    large-scale, public space or suburban backyard, our designs are*/}
+            {/*    customized and ready to install.{' '}*/}
+            {/*  </Text>*/}
+            {/*  <View style={styles.mainWorkCarousel}>*/}
+            {/*    <Carousel*/}
+            {/*      layout={'stack'}*/}
+            {/*      layoutCardOffset={'-2'}*/}
+            {/*      ref={carouselWorkRef}*/}
+            {/*      data={listWorkData}*/}
+            {/*      sliderWidth={300}*/}
+            {/*      itemWidth={300}*/}
+            {/*      renderItem={_renderSecondCarousel}*/}
+            {/*      onSnapToItem={index => setActiveIndexCar2(index)}*/}
+            {/*      startAutoPlay={true}*/}
+            {/*      loop*/}
+            {/*    />*/}
+            {/*    <Pagination*/}
+            {/*      dotsLength={listWorkData.length}*/}
+            {/*      activeDotIndex={activeIndexCar2}*/}
+            {/*      containerStyle={styles.paginationContainer}*/}
+            {/*      dotStyle={styles.dotStyle}*/}
+            {/*      inactiveDotOpacity={0.4}*/}
+            {/*      inactiveDotScale={0.6}*/}
+            {/*    />*/}
+            {/*  </View>*/}
+            {/*</View>*/}
+
+            <View style={{width: '92%', marginHorizontal: 15}}>
+              <Image
+                  // source={require('../../assets/testing_image.png')}
+                  source={require('../../assets/aboveContact.png')}
+                  style={styles.profile}
+                  resizeMode="center"
+              />
             </View>
+
             {/*=========================== Contact Us Section======================*/}
             {contactUsForm()}
           </View>
@@ -398,10 +416,8 @@ const styles = StyleSheet.create({
     marginLeft: 14,
   },
   profile: {
-    marginTop: 30,
     width: '100%',
     height: 200,
-    // marginHorizontal: 15,
   },
   titleDescription: {
     fontFamily: 'Roboto-Black',
@@ -472,9 +488,8 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   contactUsSection: {
+    marginTop: 5,
     marginBottom: 50,
-    // marginTop: 20,
-    // marginHorizontal: 5,
     backgroundColor: '#5E8886',
     width: '100%',
     paddingBottom: 20,
@@ -494,6 +509,8 @@ const styles = StyleSheet.create({
     color: '#000000',
     backgroundColor: 'white',
     marginHorizontal: 20,
+    paddingHorizontal: 10,
+    height: 45,
     marginTop: 15,
   },
   textInputContactUsMessage: {

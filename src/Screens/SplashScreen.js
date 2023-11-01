@@ -11,7 +11,8 @@ const HomeScreen = props => {
   return (
     <View style={styles.container}>
       <Image
-        source={require('../../assets/logo.png')}
+        // source={require('../../assets/logo.png')}
+        source={require('../../assets/mainLogo.png')}
         style={styles.logo}
         resizeMode="contain"
       />
