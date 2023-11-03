@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useCallback, useState} from 'react';
 import {
   View,
   Text,
@@ -8,8 +8,18 @@ import {
   SafeAreaView,
 } from 'react-native';
 import HeaderComponent from '../Utils/HeaderComponent';
+import YoutubePlayer from "react-native-youtube-iframe";
 
 const Article2 = props => {
+  const [playing, setPlaying] = useState(false);
+
+  const onStateChange = useCallback(state => {
+    if (state === 'ended') {
+      setPlaying(false);
+      console.log('video has finished playing!');
+    }
+  }, []);
+
   return (
     <SafeAreaView style={styles.mainContainer}>
       <View style={styles.mainContainer}>
@@ -24,15 +34,59 @@ const Article2 = props => {
         <ScrollView style={styles.container}>
           <View style={styles.contentContainer}>
             <Image
-              source={require('../../assets/ice_pic.png')}
+              source={require('../../assets/articleUp.jpeg')}
               style={styles.wallWripple}
               resizeMode="center"
             />
-            <Text style={styles.growingContent}>
-              {
-                "Corporate agriculture is maximizing profits at the expense of our health. Monsanto’s herbicide glyphosate is a highly toxic poison. It has caused cancer for millions of Americans. \n\n Peer-reviewed studies link this poison to many other diseases including autism, Alzheimer’s, dementia, Celiac’s, gluten intolerance, diabetes, obesity, autoimmune diseases, and cancers. Many of these disease incidence rates have increased tenfold in the past 25 years with a 99% correlation with the increased use of glyphosate. \n\n The FDA has trouble finding any food that does not have glyphosate. Even low concentrations are toxic. We are far from the responsible guidelines the relevant precautionary principle suggests. \n\n Monsanto’s poison disproportionately affects the poor and children, because it is highly concentrated in processed foods and children’s kidneys aren’t fully developed for filtering toxins. What's more important than the health of us and our loved ones? The stakes could hardly be higher. Let's do better."
-              }
+            <Text style={[styles.growingContent,{marginBottom: 0}]}>
+              A democratic government is supposed to be of, by, and for the people. But government institutions have betrayed our trust. The intelligence agencies spy on our own people. Government and tech platforms conspire to surveil and censor the public. Regulatory agencies have been captured by those they are supposed to regulate: Wall Street controls the SEC. Polluters and extractive industries dominate the EPA and BLM. Pharma controls the CDC, NIH, and FDA. Big Ag controls the USDA. Big Tech has captured the FTC. No wonder trust in government is at all-time lows. It’s time to earn it back.{"\n\n"}
+
+              From his long experience and familiarity with systems of power, Robert F. Kennedy, Jr. understands that most people in corporations and government are perfectly decent human beings. They play the game, but a lot of them are fed up with its phoniness, and cynical about the paralysis of the system. They feel trapped in it. Clean government isn’t just about removing corrupt individuals. It is about changing a system in which perfectly decent people become agents of corruption without even knowing it.{"\n\n"}
             </Text>
+            <Image
+                source={require('../../assets/articleMiddle.jpeg')}
+                style={styles.wallWripple}
+                resizeMode="center"
+            />
+            <Text style={styles.growingContent}>
+              We are going to remake public institutions to serve the public. We will roll back the secrecy and make government transparent. We will protect whistleblowers and prosecute officials who abuse the public trust. We will rein in the lobbyists and slam shut the revolving door that shunts people from government agencies to lucrative positions in the companies they were supposed to regulate, and back again. We will get money out of politics. We will open our institutions to real citizen involvement. We will restore integrity to government.
+            </Text>
+            <View style={styles.youtubePlayer}>
+              <Text style={styles.videoTitle}>
+                {"Who Censored Me And Why"}
+              </Text>
+              <YoutubePlayer
+                  height={220}
+                  play={playing}
+                  videoId={"yRuFXxvGxg8"}
+                  onChangeState={onStateChange}
+                  webViewStyle={styles.youtubeOpacity}
+              />
+            </View>
+            <View style={styles.youtubePlayer}>
+              <Text style={styles.videoTitle}>
+                {"Why The Media Lies"}
+              </Text>
+              <YoutubePlayer
+                  height={220}
+                  play={playing}
+                  videoId={"_sBWvEf9HHs"}
+                  onChangeState={onStateChange}
+                  webViewStyle={styles.youtubeOpacity}
+              />
+            </View>
+            <View style={styles.youtubePlayer}>
+              <Text style={styles.videoTitle}>
+                {"The Revolving Door Between Industry And Government Agencies"}
+              </Text>
+              <YoutubePlayer
+                  height={220}
+                  play={playing}
+                  videoId={"RLHDlvW6YuE"}
+                  onChangeState={onStateChange}
+                  webViewStyle={styles.youtubeOpacity}
+              />
+            </View>
           </View>
         </ScrollView>
       </View>
@@ -49,11 +103,22 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     flex: 1,
   },
+  youtubePlayer: {
+    marginTop: 15,
+  },
+  videoTitle: {
+    fontFamily: 'Outfit-SemiBold',
+    fontSize: 15,
+    color: '#212121',
+    marginBottom: 8,
+  },
+  youtubeOpacity: {
+    opacity: 0.99,
+  },
   headerStyleView: {
     height: 50,
   },
   contentContainer: {
-    marginTop: 20,
     paddingHorizontal: 20,
   },
   heading: {
@@ -118,13 +183,6 @@ const styles = StyleSheet.create({
     // top: 0,
     backgroundColor: '#000',
   },
-  youtubePlayer: {
-    marginTop: 10,
-    marginHorizontal: 15,
-  },
-  youtubeOpacity: {
-    opacity: 0.99,
-  },
   informationContent1: {marginBottom: 60, marginTop: 30, marginHorizontal: 20},
   growingTitle: {
     fontFamily: 'Outfit-SemiBold',
@@ -133,13 +191,13 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   growingContent: {
-    marginTop: 20,
+    marginTop: 10,
     fontFamily: 'Outfit-Regular',
     color: '#595959',
     fontSize: 17,
     fontWeight: '300',
     textAlign: 'left',
-    marginBottom: 100,
+    marginBottom: 10,
   },
   thirdContent: {
     flexDirection: 'row',

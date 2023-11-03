@@ -1,4 +1,4 @@
-import React, {useCallback, useRef, useState} from 'react';
+import React, {useCallback, useEffect, useRef, useState} from 'react';
 import {
   View,
   Text,
@@ -7,59 +7,18 @@ import {
   ScrollView,
   TextInput,
   SafeAreaView,
-  TouchableOpacity,
+  TouchableOpacity, FlatList, ActivityIndicator,
 } from 'react-native';
 import YoutubePlayer from 'react-native-youtube-iframe';
 import email from 'react-native-email';
 import HeaderComponent from '../Utils/HeaderComponent';
+import {useIsFocused} from "@react-navigation/native";
 
-const informationContent1 = () => (
-  <View style={styles.informationContent1}>
-    <Text style={styles.growingTitle}>Growing freedom one seed at a time</Text>
-    <Text style={styles.growingContent}>
-      Since our launch on Earth Day 2021, we have helped people grow food in
-    </Text>
-    <View style={styles.thirdContent}>
-      <View style={styles.thirdContainerChild}>
-        <Text style={styles.numberTitle}>50</Text>
-        <Text style={styles.stateTitle}>STATES</Text>
-      </View>
-      <View style={styles.thirdContainerChild}>
-        <Text style={styles.numberTitle}>51</Text>
-        <Text style={styles.stateTitle}>COUNTRIES</Text>
-      </View>
-    </View>
-    <View style={styles.mt10}>
-      <Text style={styles.growingContent}>
-        including resorts in Thailand, large farms in Africa, and single-family
-        residences from Poland to Mexico and all around the United States. Our
-        professional food forest designers can design in any location around the
-        world.
-      </Text>
-    </View>
-  </View>
-);
-
-const _renderFirstCarousel = ({index, item}) => (
-  <View>
-    <View style={styles.renderFirstCarousel}>
-      <Image source={item.uri} style={styles.peopleSaidImage} />
-    </View>
-  </View>
-);
-
-const _renderSecondCarousel = ({index, item}) => (
-  <View>
-    <View style={styles.renderSecondCarousel}>
-      <Image source={item.uri} style={styles.workImage} />
-    </View>
-  </View>
-);
-
+let page = 1;
 const TestingScreen = props => {
+
+  const isFocused = useIsFocused();
   const [playing, setPlaying] = useState(false);
-  const [activeIndexCar1, setActiveIndexCar1] = useState(0);
-  const [activeIndexCar2, setActiveIndexCar2] = useState(0);
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [emailAddress, setEmailAdress] = useState('');
@@ -68,49 +27,8 @@ const TestingScreen = props => {
   const [province, setProvince] = useState('');
   const [hear, setHear] = useState('');
   const [message, setMessage] = useState('');
-  const carouselRef = useRef(null);
-  const carouselWorkRef = useRef(null);
-  const listData = [
-    {
-      uri: require('../../assets/testi1.png'),
-    },
-    {
-      uri: require('../../assets/testi2.png'),
-    },
-    {
-      uri: require('../../assets/testi4.png'),
-    },
-    {
-      uri: require('../../assets/testi5.png'),
-    },
-    {
-      uri: require('../../assets/testi6.png'),
-    },
-    {
-      uri: require('../../assets/testi7.png'),
-    },
-    {
-      uri: require('../../assets/testi8.png'),
-    },
-  ];
-
-  const listWorkData = [
-    {
-      uri: require('../../assets/work1.jpeg'),
-    },
-    {
-      uri: require('../../assets/work2.jpeg'),
-    },
-    {
-      uri: require('../../assets/work4.jpeg'),
-    },
-    {
-      uri: require('../../assets/work5.jpeg'),
-    },
-    {
-      uri: require('../../assets/work0.jpeg'),
-    },
-  ];
+  let [video, setVideos] = useState([]);
+  const [isLoading, setLoading] = useState(false);
 
   const onStateChange = useCallback(state => {
     if (state === 'ended') {
@@ -118,6 +36,40 @@ const TestingScreen = props => {
       console.log('video has finished playing!');
     }
   }, []);
+
+  useEffect(() => {
+    if(isFocused){
+      page = 1;
+      getVideos(true, 1);
+    };
+  },[isFocused]);
+
+  const getVideos = (bool,num) => {
+    setLoading(bool);
+    const API_KEY = 'AIzaSyCbs4Q6NqqWzgVUtFGUn15G8T0yazsqHDQ';
+    const CHANNEL_ID = 'UC4ewc5vQcMpLticvqPDcSQw';
+    fetch(`https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&channelId=${CHANNEL_ID}&part=snippet,id&$page=${num}&order=date&maxResults=30&type=video`)
+        .then(response => response.json())
+        .then(data => {
+          console.log('Data',num, data);
+          const videos = data?.items?.map(item => {
+            return {
+              title: item?.snippet?.description !== "" ? item?.snippet?.description: item?.snippet?.title,
+              videoId: item?.id?.videoId,
+              thumbnail: item?.snippet?.thumbnails?.default?.url
+            };
+          });
+          if(num === 1 ){
+            setVideos(videos)
+          } else {
+            setVideos([...video,...videos]);
+          }
+          setLoading(false);
+        })
+        .catch(error => {
+          setLoading(false);
+        });
+  }
 
   const handleEmail = () => {
     const mainMessage = `Name : ${firstName} ${lastName} \n Email: ${emailAddress} \n Phone: ${phone} \n Address: ${address} \n Province: ${province} \n How did hear about us : ${hear} \n Message: ${message}`;
@@ -197,6 +149,12 @@ const TestingScreen = props => {
     </View>
   );
 
+  const handleEnd = () => {
+    if (!isLoading && video?.length > 19) {
+      getVideos(false, page + 1);
+    }
+  }
+
   return (
     <SafeAreaView style={styles.mainContainer}>
       <View style={styles.mainContainer}>
@@ -208,71 +166,38 @@ const TestingScreen = props => {
             }
           />
         </View>
-        <ScrollView style={styles.container}>
-          <View style={styles.contentContainer}>
-            <View style={styles.youtubePlayer}>
-              <Text style={styles.videoTitle}>
-                Chad Johnson Food Forest Walkthrough with Jim Gale of FFA
-              </Text>
-              <YoutubePlayer
-                height={220}
-                play={playing}
-                videoId={'pshyJI0u7eE'}
-                onChangeState={onStateChange}
-                webViewStyle={styles.youtubeOpacity}
-              />
-            </View>
-            <View style={styles.youtubePlayer}>
-              <Text style={styles.videoTitle}>
-                CREATING ABUNDANCE IN YOUR BACKYARD - Jim Gale on The Highwire
-              </Text>
-              <YoutubePlayer
-                height={220}
-                play={playing}
-                videoId={'DJEihCcRH0c'}
-                onChangeState={onStateChange}
-                webViewStyle={styles.youtubeOpacity}
-              />
-            </View>
-            <View style={styles.youtubePlayer}>
-              <Text style={styles.videoTitle}>
-                Jim Gale - Food Forest Abundance | Food Forests Everywhere!
-              </Text>
-              <YoutubePlayer
-                height={220}
-                play={playing}
-                videoId={'eIb8p5eWZl8'}
-                onChangeState={onStateChange}
-                webViewStyle={styles.youtubeOpacity}
-              />
-            </View>
-            <View style={styles.youtubePlayer}>
-              <Text style={styles.videoTitle}>
-                Jim Gale Galt's Landing - Food, water and energy self-reliance,
-                Lakefront, Luxury!
-              </Text>
-              <YoutubePlayer
-                height={220}
-                play={playing}
-                videoId={'ST2Vac0P14c'}
-                onChangeState={onStateChange}
-                webViewStyle={styles.youtubeOpacity}
-              />
-            </View>
-            <View style={styles.youtubePlayer}>
-              <Text style={styles.videoTitle}>
-                "This FREEDOM Revolution Is Unstoppable" by INSPIRED
-              </Text>
-              <YoutubePlayer
-                height={220}
-                play={playing}
-                videoId={'z87sBzZ-hkc'}
-                onChangeState={onStateChange}
-                webViewStyle={styles.youtubeOpacity}
-              />
-            </View>
-          </View>
-        </ScrollView>
+        <View style={styles.container}>
+
+          {!isLoading?
+              <FlatList
+              data={video}
+              extraData={video}
+              onEndReachedThreshold={0.8}
+              onEndReached={handleEnd}
+              showsVerticalScrollIndicator={false}
+              renderItem={({item, index}) => {
+                return (
+                    <View style={styles.youtubePlayer}>
+                      <Text style={styles.videoTitle}>
+                        {item?.title}
+                      </Text>
+                      <YoutubePlayer
+                          height={220}
+                          play={playing}
+                          videoId={item?.videoId}
+                          onChangeState={onStateChange}
+                          webViewStyle={styles.youtubeOpacity}
+                      />
+                    </View>
+                )
+              }}
+          /> :
+              <View style={styles.loaderStyle}>
+                <ActivityIndicator size={'small'} color={'#0165ff'}/>
+              </View>
+          }
+
+        </View>
       </View>
     </SafeAreaView>
   );
@@ -287,6 +212,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     flex: 1,
   },
+  loaderStyle:{
+    flex:1,
+    justifyContent:'center',
+    alignItems:'center'
+  },
   headerStyleView: {
     height: 50,
   },
@@ -294,9 +224,10 @@ const styles = StyleSheet.create({
     fontFamily: 'Outfit-SemiBold',
     fontSize: 15,
     color: '#212121',
+    marginBottom: 8,
   },
   contentContainer: {
-    marginBottom: 80,
+    marginBottom: 12,
   },
   heading: {
     fontFamily: 'Outfit-SemiBold',

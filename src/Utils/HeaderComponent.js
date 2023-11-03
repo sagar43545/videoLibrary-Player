@@ -7,9 +7,9 @@ const HeaderComponent = props => {
   let userImage = auth().currentUser.photoURL;
   return (
     <View style={styles.headerComponent}>
-      <View>
+      <View style={{width: 40}}>
         <Image
-          source={require('../../assets/logo.png')}
+          source={require('../../assets/mainLogo.png')}
           style={styles.logo}
           resizeMode="contain"
         />
@@ -62,10 +62,10 @@ const styles = StyleSheet.create({
     borderRadius: 15,
   },
   logo: {
-    width: 90,
-    height: 40,
+    width: 35,
+    height: 35,
+    borderRadius: 35 / 2,
     alignSelf: 'flex-start',
-    marginLeft: -30,
   },
 });
 export default HeaderComponent;
