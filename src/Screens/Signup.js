@@ -74,12 +74,12 @@ const Login = props => {
           styleProps={styles.button}
           textStyle={styles.buttonText}
         />
-        <View style={styles.row}>
+        {/* <View style={styles.row}>
           <Text style={styles.loginWith}>Already have an account? </Text>
           <Pressable onPress={() => props.navigation.goBack()}>
             <Text style={styles.link}>Login</Text>
           </Pressable>
-        </View>
+        </View> */}
       </View>
       <BottomModal isVisible={showModal} dismiss={() => setShowModal(false)}>
         <View

@@ -408,7 +408,7 @@ const App = props => {
             ),
           })}
         />
-        <Stack.Screen
+        {/* <Stack.Screen
           name="Login"
           initialParams={{optionsModal: false}}
           component={Login}
@@ -427,7 +427,7 @@ const App = props => {
               </Pressable>
             ),
           })}
-        />
+        /> */}
         <Stack.Screen
           name="Signup"
           initialParams={{optionsModal: false}}

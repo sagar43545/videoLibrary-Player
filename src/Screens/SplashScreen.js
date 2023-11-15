@@ -4,7 +4,7 @@ import React, {useEffect} from 'react';
 const HomeScreen = props => {
   useEffect(() => {
     setTimeout(() => {
-      props.navigation.navigate('Login');
+      props.navigation.navigate('Signup');
     }, 2000);
   }, []);
 
