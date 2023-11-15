@@ -80,7 +80,7 @@ const Login = props => {
             <Text style={styles.link}>Login</Text>
           </Pressable>
         </View> */}
-      </View>
+              </View>
       <BottomModal isVisible={showModal} dismiss={() => setShowModal(false)}>
         <View
           style={styles.pickerModal}
